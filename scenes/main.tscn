@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://c2cmkexvrpviw" path="res://scenes/player.tscn" id="1_5sbtf"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_6bqi1"]
-[ext_resource type="PackedScene" uid="uid://7kv1ljq81wtc" path="res://scenes/asteroid.tscn" id="2_y1jwr"]
+[ext_resource type="PackedScene" uid="uid://coc1nm1ejvyec" path="res://scenes/asteroid_spawner.tscn" id="4_ki3ja"]
 
-[sub_resource type="Curve2D" id="Curve2D_nxn41"]
+[sub_resource type="Curve2D" id="Curve2D_u5cct"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -1024, -768, 0, 0, 0, 0, 1024, -768, 0, 0, 0, 0, 1024, 768, 0, 0, 0, 0, -1024, 768, 0, 0, 0, 0, -1024, -768)
 }
@@ -12,7 +12,6 @@ point_count = 5
 
 [node name="Main" type="Node"]
 script = ExtResource("1_6bqi1")
-asteroid = ExtResource("2_y1jwr")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
@@ -20,8 +19,12 @@ zoom = Vector2(0.5, 0.5)
 [node name="Player" parent="." instance=ExtResource("1_5sbtf")]
 scale = Vector2(0.5, 0.5)
 
+[node name="AsteroidSpawner" parent="." node_paths=PackedStringArray("spawn_location") instance=ExtResource("4_ki3ja")]
+spawn_location = NodePath("../AsteroidPath/SpawnLocation")
+count = 6
+
 [node name="AsteroidPath" type="Path2D" parent="."]
-curve = SubResource("Curve2D_nxn41")
+curve = SubResource("Curve2D_u5cct")
 
 [node name="SpawnLocation" type="PathFollow2D" parent="AsteroidPath"]
 position = Vector2(-1024, -768)

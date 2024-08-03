@@ -2,10 +2,10 @@ extends CharacterBody2D
 
 class_name Player
 
-@export var max_speed: float = 10;
+@export var max_speed: int = 10;
 @export var rotation_speed: float = 3.5;
 @export var velocity_damping_factor: float = .5;
-@export var linear_velocity: float = 200;
+@export var linear_velocity: int = 200;
 
 var input_vector: Vector2;
 
