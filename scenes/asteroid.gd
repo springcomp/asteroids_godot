@@ -42,7 +42,12 @@ func _ready():
 func _process(delta):
 	position += direction * speed * delta
 
-func _on_body_entered(body:Node2D):
+func _on_area_entered(area: Area2D):
+	if area is Bullet:
+		area.queue_free()
+		on_destroy()
+
+func _on_body_entered(body: CharacterBody2D):
 	if body is Player:
 		body.queue_free()
 		on_destroy()
