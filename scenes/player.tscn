@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bylmj0oqqaqm5" path="res://scenes/screen_bounds_movement.tscn" id="3_ci5l8"]
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 28
 script = ExtResource("1_axuow")
 metadata/_edit_group_ = true
 

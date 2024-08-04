@@ -8,6 +8,8 @@
 radius = 64.0
 
 [node name="Asteroid" type="Area2D"]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_fctxs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -19,3 +21,5 @@ one_way_collision = true
 
 [node name="ScreenBoundsMovement" parent="." node_paths=PackedStringArray("node") instance=ExtResource("2_f37i6")]
 node = NodePath("..")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

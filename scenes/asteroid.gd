@@ -33,3 +33,8 @@ func _ready():
 
 func _process(delta):
 	position += direction * speed * delta
+
+
+func _on_body_entered(body:Node2D):
+	if body is Player:
+		body.queue_free()

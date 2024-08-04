@@ -53,6 +53,14 @@ spawn={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_1="Player"
+2d_render/layer_2="Bullets"
+2d_render/layer_3="Asteroids"
+2d_render/layer_4="UFO"
+2d_render/layer_5="UFO Bullets"
+
 [rendering]
 
 environment/defaults/default_clear_color=Color(0.000113828, 0.000113828, 0.000113828, 1)
