@@ -27,3 +27,13 @@ node = NodePath("..")
 position = Vector2(0, 64)
 script = ExtResource("4_2f5tq")
 bullet_scene = ExtResource("5_hqoy8")
+
+[node name="BlinkingTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="BlinkingTimer" to="." method="_on_blinking_timer_timeout"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

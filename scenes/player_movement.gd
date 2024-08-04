@@ -9,12 +9,20 @@ signal on_player_died()
 @export var velocity_damping_factor: float = .5;
 @export var linear_velocity: int = 200;
 
+@onready var blinking_timer: Timer = $BlinkingTimer
+@onready var invincibility_timer: Timer = $InvincibilityTimer
+@onready var sprite = $Sprite2D
+
+var is_invincible: bool = false
 var input_vector: Vector2;
 
 ## -1: rotate_left
 ##  0: no rotation
 ## +1: rotate_right
 var rotation_direction: int;
+
+func _ready():
+	make_invincible()
 
 func _process(_delta):
 	input_vector.x = Input.get_action_strength("rotate_left") - Input.get_action_strength("rotate_right")
@@ -46,3 +54,16 @@ func slow_down_and_stop(delta: float):
 	velocity = lerp(velocity, Vector2.ZERO, velocity_damping_factor * delta)
 	if velocity.y > -0.1 && velocity.y < 0.1:
 		velocity.y = 0
+
+func make_invincible():
+	is_invincible = true
+	blinking_timer.start()
+	invincibility_timer.start()
+
+func _on_blinking_timer_timeout():
+	sprite.visible = !sprite.visible
+
+func _on_invincibility_timer_timeout():
+	blinking_timer.stop()
+	sprite.visible = true
+	is_invincible = false
