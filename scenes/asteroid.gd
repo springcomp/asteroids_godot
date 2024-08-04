@@ -4,7 +4,10 @@ class_name Asteroid
 
 const Utils = preload("res://scenes/Utils/utils.gd")
 
-@export var speed: int = 100
+signal on_destroyed(position: Vector2, size: Utils.AsteroidSize)
+
+@export var speed: float = 100
+@export var speed_increment_factor: float = .3
 
 @onready var sprite = $Sprite2D
 @onready var explosion_particles = $ExplosionParticles
@@ -28,9 +31,13 @@ func _ready():
 	var scale_value = 1 / ( size + 1.0 )
 	scale = Vector2(scale_value, scale_value)
 
+	## smaller asteroids move faster
+	speed += speed_increment_factor * size * speed
+
 	var image_index = randi() % image_array.size()
 	var random_image = load(image_array[image_index])
 	sprite.texture = random_image
+
 
 func _process(delta):
 	position += direction * speed * delta
@@ -43,6 +50,7 @@ func _on_body_entered(body:Node2D):
 func on_destroy():
 	explode()
 	queue_free()
+	on_destroyed.emit(position, size)
 
 func explode():
 	explosion_particles.emitting = true
