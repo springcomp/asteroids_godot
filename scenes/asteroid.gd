@@ -7,6 +7,7 @@ const Utils = preload("res://scenes/Utils/utils.gd")
 @export var speed: int = 100
 
 @onready var sprite = $Sprite2D
+@onready var explosion_particles = $ExplosionParticles
 
 var image_array = [
 	"res://arts/Asteroid_01.png",
@@ -34,7 +35,15 @@ func _ready():
 func _process(delta):
 	position += direction * speed * delta
 
-
 func _on_body_entered(body:Node2D):
 	if body is Player:
 		body.queue_free()
+		on_destroy()
+
+func on_destroy():
+	explode()
+	queue_free()
+
+func explode():
+	explosion_particles.emitting = true
+	explosion_particles.reparent(get_tree().root)
