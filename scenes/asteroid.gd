@@ -49,6 +49,7 @@ func _on_area_entered(area: Area2D):
 
 func _on_body_entered(body: CharacterBody2D):
 	if body is Player:
+		body.on_player_died.emit()
 		body.queue_free()
 		on_destroy()
 

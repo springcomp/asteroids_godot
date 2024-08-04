@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://f75re82gfbke"]
+[gd_scene load_steps=6 format=3 uid="uid://f75re82gfbke"]
 
 [ext_resource type="PackedScene" uid="uid://c2cmkexvrpviw" path="res://scenes/player.tscn" id="1_5sbtf"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_6bqi1"]
+[ext_resource type="Script" path="res://scenes/lives_manager.gd" id="4_6nmt5"]
 [ext_resource type="PackedScene" uid="uid://coc1nm1ejvyec" path="res://scenes/asteroid_spawner.tscn" id="4_ki3ja"]
 
 [sub_resource type="Curve2D" id="Curve2D_u5cct"]
@@ -17,7 +18,6 @@ script = ExtResource("1_6bqi1")
 zoom = Vector2(0.5, 0.5)
 
 [node name="Player" parent="." instance=ExtResource("1_5sbtf")]
-scale = Vector2(0.5, 0.5)
 
 [node name="AsteroidSpawner" parent="." node_paths=PackedStringArray("spawn_location") instance=ExtResource("4_ki3ja")]
 spawn_location = NodePath("../AsteroidPath/SpawnLocation")
@@ -28,3 +28,6 @@ curve = SubResource("Curve2D_u5cct")
 
 [node name="SpawnLocation" type="PathFollow2D" parent="AsteroidPath"]
 position = Vector2(-1024, -768)
+
+[node name="LivesManager" type="Node" parent="."]
+script = ExtResource("4_6nmt5")
