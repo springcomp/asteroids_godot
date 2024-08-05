@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://vn5i7hajj5k2"]
+
+[ext_resource type="Script" path="res://scenes/ufo_spawner.gd" id="1_dvaf7"]
+[ext_resource type="Script" path="res://scenes/ufo_spawn_timer.gd" id="2_tngsp"]
+[ext_resource type="PackedScene" uid="uid://cp8yatt1usoho" path="res://scenes/ufo.tscn" id="2_wp2nj"]
+
+[sub_resource type="Curve2D" id="Curve2D_e8dq2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1024, -687, 0, 0, 0, 0, -512, -476, 0, 0, 0, 0, 0, -389, 0, 0, 0, 0, 295, -435, 0, 0, 0, 0, 512, -567, 0, 0, 0, 0, 1224, -492)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_cuq5c"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1024, 700, 0, 0, 0, 0, 512, 600, 0, 0, 0, 0, 280, 441, 0, 0, 0, 0, 0, 512, 0, 0, 0, 0, -512, 598, 0, 0, 0, 0, -1224, 384)
+}
+point_count = 6
+
+[node name="UfoSpawner" type="Node"]
+script = ExtResource("1_dvaf7")
+ufo_scene = ExtResource("2_wp2nj")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+one_shot = true
+script = ExtResource("2_tngsp")
+
+[node name="PathTopLeft" type="Path2D" parent="."]
+curve = SubResource("Curve2D_e8dq2")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PathTopLeft"]
+position = Vector2(-1024, -687)
+rotation = 0.390902
+
+[node name="PathBottomRight" type="Path2D" parent="."]
+curve = SubResource("Curve2D_cuq5c")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PathBottomRight"]
+position = Vector2(1024, 700)
+rotation = -2.94871
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

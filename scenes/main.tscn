@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://f75re82gfbke"]
+[gd_scene load_steps=8 format=3 uid="uid://f75re82gfbke"]
 
 [ext_resource type="PackedScene" uid="uid://c2cmkexvrpviw" path="res://scenes/player.tscn" id="1_5sbtf"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_6bqi1"]
 [ext_resource type="Script" path="res://scenes/lives_manager.gd" id="4_6nmt5"]
 [ext_resource type="PackedScene" uid="uid://coc1nm1ejvyec" path="res://scenes/asteroid_spawner.tscn" id="4_ki3ja"]
 [ext_resource type="PackedScene" uid="uid://cr5namd6p55fh" path="res://scenes/ui.tscn" id="5_lauxj"]
+[ext_resource type="PackedScene" uid="uid://vn5i7hajj5k2" path="res://scenes/ufo_spawner.tscn" id="6_25hst"]
 
 [sub_resource type="Curve2D" id="Curve2D_u5cct"]
 _data = {
@@ -23,6 +24,8 @@ zoom = Vector2(0.5, 0.5)
 [node name="AsteroidSpawner" parent="." node_paths=PackedStringArray("spawn_location") instance=ExtResource("4_ki3ja")]
 spawn_location = NodePath("../AsteroidPath/SpawnLocation")
 count = 6
+
+[node name="UfoSpawner" parent="." instance=ExtResource("6_25hst")]
 
 [node name="AsteroidPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_u5cct")

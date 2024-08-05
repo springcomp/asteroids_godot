@@ -48,7 +48,6 @@ func _ready():
 	var random_image = load(image_array[image_index])
 	sprite.texture = random_image
 
-
 func _process(delta):
 	position += direction * speed * delta
 	rotation += rotation_speed * delta
