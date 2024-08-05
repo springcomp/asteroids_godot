@@ -28,6 +28,7 @@ alignment = 2
 [node name="PointsLabel" type="Label" parent="MarginContainer/PointsContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_3w3if")
+theme_override_font_sizes/font_size = 30
 
 [node name="LivesContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2

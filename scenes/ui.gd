@@ -1,8 +1,10 @@
 extends CanvasLayer
 
+@onready var points_label: Label = $MarginContainer/PointsContainer/PointsLabel
+
 @onready var lives_container: HBoxContainer = $MarginContainer/LivesContainer
 @onready var lives_manager: LivesManager = $"../LivesManager"
-@onready var game_over_label: Label = $"MarginContainer/GameOverContainer/GameOverLabel"
+@onready var game_over_label: Label = $MarginContainer/GameOverContainer/GameOverLabel
 
 var lives_texture = preload("res://arts/lives.png");
 var empty_life_texture = preload("res://arts/player.png")
@@ -24,3 +26,6 @@ func on_player_life_lost(lives_left: int):
 	lives_texture_rect.texture = empty_life_texture
 	if (lives_left == 0):
 		game_over_label.visible = true
+
+func _on_asteroid_spawner_points_updated(points:int):
+	points_label.text = "%s" % points

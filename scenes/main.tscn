@@ -34,3 +34,5 @@ position = Vector2(-1024, -768)
 script = ExtResource("4_6nmt5")
 
 [node name="UI" parent="." instance=ExtResource("5_lauxj")]
+
+[connection signal="points_updated" from="AsteroidSpawner" to="UI" method="_on_asteroid_spawner_points_updated"]
