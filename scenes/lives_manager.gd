@@ -20,4 +20,4 @@ func decrease_lives():
 	if lives != 0:
 		var new_player = player_scene.instantiate() as Player
 		new_player.on_player_died.connect(decrease_lives)
-		get_tree().root.get_node("Main").add_child(new_player)
+		get_tree().root.get_node("Main").add_child.call_deferred(new_player)
