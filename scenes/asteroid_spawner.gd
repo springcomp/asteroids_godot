@@ -3,6 +3,7 @@ extends Node
 class_name AsteroidSpawner
 
 signal points_updated(points: int)
+signal game_won()
 
 @export var asteroid_scene: PackedScene
 @export var spawn_location: PathFollow2D
@@ -17,6 +18,7 @@ var destroyed_asteroid_count: int = 0
 
 func _ready():
 	spawn_asteroids()
+	total_asteroid_count = count * 7
 
 func spawn_asteroids():
 	for i in range(count):
@@ -31,11 +33,7 @@ func spawn_asteroid(position: Vector2, size: Utils.AsteroidSize):
 	asteroid.size = size
 	get_tree().root.add_child.call_deferred(asteroid)
 
-	total_asteroid_count += 1
-
 func _on_asteroid_destroyed(position: Vector2, size: Utils.AsteroidSize):
-
-	destroyed_asteroid_count +=1
 
 	if size == Utils.AsteroidSize.BIG:
 		points += 50
@@ -51,6 +49,11 @@ func _on_asteroid_destroyed(position: Vector2, size: Utils.AsteroidSize):
 		for i in range(2):
 			spawn_asteroid(position, new_size);
 
+	destroyed_asteroid_count += 1
 	if (destroyed_asteroid_count == total_asteroid_count):
-		count += (count >> 1)
-		spawn_asteroids()
+		## spawn a new level
+		## count += (count >> 1)
+		## spawn_asteroids()
+
+		## wins game
+		game_won.emit()

@@ -29,3 +29,8 @@ func on_player_life_lost(lives_left: int):
 
 func _on_asteroid_spawner_points_updated(points:int):
 	points_label.text = "%s" % points
+
+func _on_asteroid_spawner_game_won():
+	game_over_label.text = "You won!"
+	game_over_label.add_theme_color_override("font_color", Color.CHARTREUSE)
+	game_over_label.visible = true
