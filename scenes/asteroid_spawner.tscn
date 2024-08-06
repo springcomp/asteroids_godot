@@ -1,9 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://coc1nm1ejvyec"]
+[gd_scene load_steps=4 format=3 uid="uid://coc1nm1ejvyec"]
 
 [ext_resource type="Script" path="res://scenes/asteroid_spawner.gd" id="1_7xtt7"]
 [ext_resource type="PackedScene" uid="uid://7kv1ljq81wtc" path="res://scenes/asteroid.tscn" id="2_mhd4h"]
+
+[sub_resource type="Curve2D" id="Curve2D_m7ff8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1024, -768, 0, 0, 0, 0, 1024, -768, 0, 0, 0, 0, 1024, 768, 0, 0, 0, 0, -1024, 768, 0, 0, 0, 0, -1024, -768)
+}
+point_count = 5
 
 [node name="AsteroidSpawner" type="Node"]
 script = ExtResource("1_7xtt7")
 asteroid_scene = ExtResource("2_mhd4h")
 count = 1
+
+[node name="AsteroidPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_m7ff8")
+
+[node name="SpawnLocation" type="PathFollow2D" parent="AsteroidPath"]
+position = Vector2(-1024, -768)

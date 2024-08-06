@@ -5,9 +5,9 @@ class_name AsteroidSpawner
 signal points_updated(points: int)
 signal game_won()
 
-@export var asteroid_scene: PackedScene
-@export var spawn_location: PathFollow2D
+@onready var spawn_location: PathFollow2D = $AsteroidPath/SpawnLocation
 
+@export var asteroid_scene: PackedScene
 @export var count: int = 6
 
 const Utils = preload("res://scenes/Utils/utils.gd")
