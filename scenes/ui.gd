@@ -3,7 +3,7 @@ extends CanvasLayer
 @onready var points_label: Label = $MarginContainer/PointsContainer/PointsLabel
 
 @onready var lives_container: HBoxContainer = $MarginContainer/LivesContainer
-@onready var lives_manager: LivesManager = $"../LivesManager"
+@onready var lives_manager: LivesManager = $LivesManager
 @onready var game_over_label: Label = $MarginContainer/GameOverContainer/GameOverLabel
 
 var lives_texture = preload("res://arts/lives.png");

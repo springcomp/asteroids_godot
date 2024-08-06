@@ -7,7 +7,7 @@ signal on_player_life_lost(lives_left: int)
 @export var lives: int = 3
 @export var player_scene: PackedScene = preload("res://scenes/player.tscn")
 
-@onready var player: Player = $"../Player"
+@onready var player: Player = $"../../Player"
 
 const player_start_position = Vector2(0, 0)
 
