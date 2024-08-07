@@ -21,3 +21,7 @@ func on_asteroid_destroyed(size: Utils.AsteroidSize):
 func on_ufo_destroyed():
 	points += 200
 	on_points_updated.emit(points)
+
+func _on_lives_manager_on_player_life_lost(_lives_left:int):
+	points -= 100
+	on_points_updated.emit(points)
