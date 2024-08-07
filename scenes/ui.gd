@@ -19,18 +19,16 @@ func _ready():
 		lives_texture_rect.custom_minimum_size = Vector2(32, 32)
 		lives_container.add_child(lives_texture_rect)
 
-	lives_manager.on_player_life_lost.connect(on_player_life_lost)
-
-func on_player_life_lost(lives_left: int):
-	var lives_texture_rect: TextureRect = lives_container.get_child(lives_left + 1)
-	lives_texture_rect.texture = empty_life_texture
-	if (lives_left == 0):
-		game_over_label.visible = true
-
-func _on_points_manager_on_points_updated(points:int):
-	points_label.text = "%s" % points
-
 func _on_asteroid_spawner_game_won():
 	game_over_label.text = "You won!"
 	game_over_label.add_theme_color_override("font_color", Color.CHARTREUSE)
 	game_over_label.visible = true
+
+func _on_points_manager_on_points_updated(points:int):
+	points_label.text = "%s" % points
+
+func _on_lives_manager_on_player_life_lost(lives_left:int):
+	var lives_texture_rect: TextureRect = lives_container.get_child(lives_left + 1)
+	lives_texture_rect.texture = empty_life_texture
+	if (lives_left == 0):
+		game_over_label.visible = true

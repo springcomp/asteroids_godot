@@ -29,5 +29,7 @@ script = ExtResource("4_6nmt5")
 [node name="PointsManager" type="Node" parent="UI"]
 script = ExtResource("7_2b1s2")
 
+[connection signal="on_player_died" from="Player" to="UI/LivesManager" method="_on_player_on_player_died"]
 [connection signal="game_won" from="AsteroidSpawner" to="UI" method="_on_asteroid_spawner_game_won"]
+[connection signal="on_player_life_lost" from="UI/LivesManager" to="UI" method="_on_lives_manager_on_player_life_lost"]
 [connection signal="on_points_updated" from="UI/PointsManager" to="UI" method="_on_points_manager_on_points_updated"]
