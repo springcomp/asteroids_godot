@@ -17,3 +17,7 @@ func on_asteroid_destroyed(size: Utils.AsteroidSize):
 		points += 175
 
 	on_points_updated.emit(points)
+
+func on_ufo_destroyed():
+	points += 200
+	on_points_updated.emit(points)

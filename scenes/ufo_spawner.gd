@@ -5,6 +5,7 @@ class_name UfoSpawner
 @onready var timer: Timer = $SpawnTimer
 @onready var topPath: PathFollow2D = $PathTopLeft/PathFollow2D
 @onready var bottomPath: PathFollow2D = $PathBottomRight/PathFollow2D
+@onready var points_manager = $"../UI/PointsManager"
 
 @export var ufo_scene: PackedScene
 
@@ -24,3 +25,4 @@ func spawn_ufo():
 
 func on_ufo_destroyed():
 	timer.setup_timer()
+	points_manager.on_ufo_destroyed()
