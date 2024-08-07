@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://f75re82gfbke"]
+[gd_scene load_steps=8 format=3 uid="uid://f75re82gfbke"]
 
 [ext_resource type="PackedScene" uid="uid://c2cmkexvrpviw" path="res://scenes/player.tscn" id="1_5sbtf"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_6bqi1"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://coc1nm1ejvyec" path="res://scenes/asteroid_spawner.tscn" id="4_ki3ja"]
 [ext_resource type="PackedScene" uid="uid://cr5namd6p55fh" path="res://scenes/ui.tscn" id="5_lauxj"]
 [ext_resource type="PackedScene" uid="uid://vn5i7hajj5k2" path="res://scenes/ufo_spawner.tscn" id="6_25hst"]
+[ext_resource type="Script" path="res://scenes/Utils/points_manager.gd" id="7_2b1s2"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_6bqi1")
@@ -26,6 +27,7 @@ count = 6
 script = ExtResource("4_6nmt5")
 
 [node name="PointsManager" type="Node" parent="UI"]
+script = ExtResource("7_2b1s2")
 
 [connection signal="game_won" from="AsteroidSpawner" to="UI" method="_on_asteroid_spawner_game_won"]
-[connection signal="points_updated" from="AsteroidSpawner" to="UI" method="_on_asteroid_spawner_points_updated"]
+[connection signal="on_points_updated" from="UI/PointsManager" to="UI" method="_on_points_manager_on_points_updated"]

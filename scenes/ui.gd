@@ -27,7 +27,7 @@ func on_player_life_lost(lives_left: int):
 	if (lives_left == 0):
 		game_over_label.visible = true
 
-func _on_asteroid_spawner_points_updated(points:int):
+func _on_points_manager_on_points_updated(points:int):
 	points_label.text = "%s" % points
 
 func _on_asteroid_spawner_game_won():

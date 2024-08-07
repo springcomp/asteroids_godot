@@ -2,17 +2,16 @@ extends Node
 
 class_name AsteroidSpawner
 
-signal points_updated(points: int)
+const Utils = preload("res://scenes/Utils/utils.gd")
+
 signal game_won()
 
 @onready var spawn_location: PathFollow2D = $AsteroidPath/SpawnLocation
+@onready var points_manager = $"../UI/PointsManager"
 
 @export var asteroid_scene: PackedScene
 @export var count: int = 6
 
-const Utils = preload("res://scenes/Utils/utils.gd")
-
-var points: int = 0
 var total_asteroid_count: int = 0
 var destroyed_asteroid_count: int = 0
 
@@ -35,14 +34,7 @@ func spawn_asteroid(position: Vector2, size: Utils.AsteroidSize):
 
 func _on_asteroid_destroyed(position: Vector2, size: Utils.AsteroidSize):
 
-	if size == Utils.AsteroidSize.BIG:
-		points += 50
-	elif size == Utils.AsteroidSize.MEDIUM:
-		points += 125
-	elif size == Utils.AsteroidSize.SMALL:
-		points += 175
-
-	points_updated.emit(points)
+	points_manager.on_asteroid_destroyed(size)
 
 	if size != Utils.AsteroidSize.SMALL:
 		var new_size = size + 1;
