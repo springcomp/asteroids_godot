@@ -20,9 +20,13 @@ func spawn_ufo():
 	ufo.path = path_to_follow
 	ufo.global_position = path_to_follow.position
 	ufo.on_destroyed.connect(on_ufo_destroyed)
+	ufo.on_vanished.connect(on_ufo_vanished)
 
 	get_tree().root.get_node("Main").add_child.call_deferred(ufo)
 
 func on_ufo_destroyed():
-	timer.setup_timer()
 	points_manager.on_ufo_destroyed()
+	on_ufo_vanished()
+
+func on_ufo_vanished():
+	timer.setup_timer()

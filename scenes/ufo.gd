@@ -3,6 +3,7 @@ extends Area2D
 class_name Ufo
 
 signal on_destroyed()
+signal on_vanished()
 
 @onready var explosion_particles: ExplosionParticles = $ExplosionParticles
 @export var path: PathFollow2D
@@ -19,6 +20,10 @@ func _process(delta: float):
 
 func _on_area_entered(area: Area2D):
 	if area is Bullet:
+		area.queue_free()
+		on_destroy()
+	if area is Asteroid:
+		area.on_destroyed.emit(area.global_position, area.size)
 		area.queue_free()
 		on_destroy()
 
@@ -38,5 +43,5 @@ func explode():
 	explosion_particles.reparent(get_tree().root)
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
+	on_vanished.emit()
 	queue_free()
-	on_destroyed.emit()

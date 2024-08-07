@@ -65,8 +65,8 @@ func _on_body_entered(body: CharacterBody2D):
 
 func on_destroy():
 	explode()
-	queue_free()
 	on_destroyed.emit(position, size)
+	queue_free()
 
 func explode():
 	explosion_particles.emitting = true
