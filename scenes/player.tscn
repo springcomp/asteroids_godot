@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://gitx336ead6x"]
+
+[ext_resource type="Texture2D" uid="uid://b3d7it3bvjpt8" path="res://arts/ship.png" id="1_hkhug"]
+[ext_resource type="Script" path="res://scenes/player_movement.gd" id="1_sc4ys"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_sc4ys")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_hkhug")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+rotation = 3.14159
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(0, -64, 64, 64, 0, 32, -64, 64)
+
+[node name="Gun" type="Node2D" parent="."]
+position = Vector2(0, 64)
