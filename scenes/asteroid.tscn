@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://mnipidhsixy8"]
+
+[ext_resource type="Texture2D" uid="uid://7korjy0xrwe1" path="res://arts/Asteroid_01.png" id="1_mtbs2"]
+[ext_resource type="Script" path="res://scenes/asteroid.gd" id="1_xwpk5"]
+[ext_resource type="PackedScene" uid="uid://p8rfmrdn0nrd" path="res://scenes/screen_bounds_movements.tscn" id="2_aw7cb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rg1f4"]
+radius = 64.0
+
+[node name="Asteroid" type="Area2D"]
+collision_layer = 4
+collision_mask = 27
+script = ExtResource("1_xwpk5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mtbs2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rg1f4")
+
+[node name="ScreenBoundsMovements" parent="." node_paths=PackedStringArray("node") instance=ExtResource("2_aw7cb")]
+node = NodePath("..")
