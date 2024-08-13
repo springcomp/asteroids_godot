@@ -41,7 +41,6 @@ size_flags_vertical = 0
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_iw0p0")
 theme_override_font_sizes/font_size = 28
-text = "6000"
 
 [node name="LivesContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2

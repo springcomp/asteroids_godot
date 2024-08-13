@@ -2,6 +2,8 @@ extends Node
 
 const Utils = preload("res://scenes/utils/asteroid_size.gd")
 
+signal on_asteroid_destroyed(size: Utils.AsteroidSize)
+
 @export var asteroid_scene: PackedScene
 @export var count: int = 6
 
@@ -26,11 +28,12 @@ func spawn_asteroid(position: Vector2, direction: float, size: Utils.AsteroidSiz
 	asteroid.global_position = position
 	asteroid.rotation = direction
 	asteroid.size = size
-	asteroid.on_destroyed.connect(on_asteroid_destroyed)
+	asteroid.on_destroyed.connect(_on_asteroid_destroyed)
 
 	get_tree().root.add_child.call_deferred(asteroid)
 
-func on_asteroid_destroyed(position: Vector2, size: Utils.AsteroidSize):
+func _on_asteroid_destroyed(position: Vector2, size: Utils.AsteroidSize):
+	on_asteroid_destroyed.emit(size)
 	if size != Utils.AsteroidSize.SMALL:
 		var nextSize = size + 1
 		for i in range(2):

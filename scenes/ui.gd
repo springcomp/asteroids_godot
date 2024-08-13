@@ -3,6 +3,7 @@ extends CanvasLayer
 @onready var lives_container: HBoxContainer = $MarginContainer/LivesContainer
 @onready var lives_manager: LivesManager = $LivesManager
 
+@onready var points_label: Label = $MarginContainer/PointsContainer/PointsLabel
 @onready var game_over_label: Label = $MarginContainer/CenterContainer/GameOverLabel
 
 var lives_texture = load("res://arts/lives.png")
@@ -24,3 +25,6 @@ func _on_lives_manager_on_player_life_lost(lives_left):
 
 func _on_lives_manager_on_game_over():
 	game_over_label.visible = true
+
+func _on_points_manager_on_points_updated(points: int):
+	points_label.text = "%s" % [ points ]
