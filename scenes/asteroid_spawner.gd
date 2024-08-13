@@ -6,11 +6,25 @@ signal on_asteroid_destroyed(size: Utils.AsteroidSize)
 signal on_game_won()
 
 @export var asteroid_scene: PackedScene
-@export var count: int = 6
+@export var level_asteroid_counts = [
+	6,
+	8,
+	12,
+	20
+]
+
+@export var level_asteroid_speeds = [
+	100,
+	150,
+	175,
+	200
+]
 
 @onready var spawn_location: PathFollow2D = $ScreenEdges/SpawnLocation
 
 var screen_size: Vector2 
+
+var level = 0
 
 var total_asteroid_count: int
 var destroyed_asteroid_count: int = 0
@@ -21,7 +35,13 @@ func _ready():
 	var zoom = camera.zoom
 	screen_size = rect.size / zoom
 
+	start_level()
+
+func start_level():
+	var count = level_asteroid_counts[level]
+
 	total_asteroid_count = count * 7
+	destroyed_asteroid_count = 0
 
 	for i in range(count):
 		spawn_location.progress_ratio = randf()
@@ -34,6 +54,7 @@ func spawn_asteroid(position: Vector2, direction: float, size: Utils.AsteroidSiz
 	asteroid.global_position = position
 	asteroid.rotation = direction
 	asteroid.size = size
+	asteroid.speed = level_asteroid_speeds[level]
 	asteroid.on_destroyed.connect(_on_asteroid_destroyed)
 
 	get_tree().root.add_child.call_deferred(asteroid)
@@ -49,4 +70,8 @@ func _on_asteroid_destroyed(position: Vector2, size: Utils.AsteroidSize):
 			spawn_asteroid(position, direction, nextSize)
 
 	if destroyed_asteroid_count == total_asteroid_count:
-		on_game_won.emit()
+		level += 1
+		if level >= level_asteroid_counts.size():
+			on_game_won.emit()
+		else:
+			start_level()
