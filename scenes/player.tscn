@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://gitx336ead6x"]
+[gd_scene load_steps=6 format=3 uid="uid://gitx336ead6x"]
 
 [ext_resource type="Texture2D" uid="uid://b3d7it3bvjpt8" path="res://arts/ship.png" id="1_hkhug"]
 [ext_resource type="Script" path="res://scenes/player_movement.gd" id="1_sc4ys"]
 [ext_resource type="PackedScene" uid="uid://p8rfmrdn0nrd" path="res://scenes/screen_bounds_movements.tscn" id="3_7sa2m"]
+[ext_resource type="Script" path="res://scenes/player_shooting.gd" id="3_ykc01"]
+[ext_resource type="PackedScene" uid="uid://ct0r5bto3oyo2" path="res://scenes/bullet.tscn" id="4_6arhu"]
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 28
 script = ExtResource("1_sc4ys")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -18,7 +21,9 @@ scale = Vector2(0.5, 0.5)
 polygon = PackedVector2Array(0, -64, 64, 64, 0, 32, -64, 64)
 
 [node name="Gun" type="Node2D" parent="."]
-position = Vector2(0, 64)
+position = Vector2(0, 32)
+script = ExtResource("3_ykc01")
+bullet_scene = ExtResource("4_6arhu")
 
 [node name="ScreenBoundsMovements" parent="." node_paths=PackedStringArray("node") instance=ExtResource("3_7sa2m")]
 node = NodePath("..")

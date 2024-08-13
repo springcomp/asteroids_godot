@@ -2,6 +2,10 @@ extends CharacterBody2D
 
 class_name Player
 
+@export var linear_acceleration: float = 300
+@export var max_velocity: float = 700
+@export var velocity_damping_factor: float = 0.5
+
 ## -1: rotates right
 ##  0: does not rotate
 ## +1: rotates left
@@ -9,10 +13,6 @@ var rotation_direction: int = 0
 var rotation_speed: float = PI
 
 var input_vector: Vector2
-
-var linear_acceleration: float = 300
-var max_velocity: float = 700
-var velocity_damping_factor: float = 0.5
 
 func _process(_delta: float):
 	input_vector.x = Input.get_action_strength("rotate_left") - Input.get_action_strength("rotate_right");
