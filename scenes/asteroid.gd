@@ -10,7 +10,7 @@ signal on_destroyed(position: Vector2, size: Utils.AsteroidSize)
 @export var speed: float = 100
 
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var explosion_particles: CPUParticles2D = $ExplosionParticles
+@onready var explosion_particles: ExplosionParticles = $ExplosionParticles
 
 const rotation_speeds = [
 	PI / 20,
@@ -45,6 +45,11 @@ func _process(delta: float):
 	position += direction * speed * delta
 	rotation += rotation_speed * delta
 
+func _on_area_entered(area: Area2D):
+	if area is Bullet:
+		area.queue_free()
+		on_destroy()
+
 func _on_body_entered(body: CharacterBody2D):
 	if body is Player:
 		body.queue_free()
@@ -57,8 +62,4 @@ func on_destroy():
 
 func explode():
 	explosion_particles.reparent(get_tree().root)
-	explosion_particles.finished.connect(on_exploded)
-	explosion_particles.emitting = true
-
-func on_exploded():
-	explosion_particles.queue_free()
+	explosion_particles.explode()
