@@ -3,6 +3,6 @@
 [ext_resource type="Script" path="res://scenes/lives_manager.gd" id="1_l28hr"]
 [ext_resource type="PackedScene" uid="uid://gitx336ead6x" path="res://scenes/player.tscn" id="2_g2ysg"]
 
-[node name="LivesManager" type="Node2D"]
+[node name="LivesManager" type="Node"]
 script = ExtResource("1_l28hr")
 player_scene = ExtResource("2_g2ysg")
