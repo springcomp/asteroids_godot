@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://w7g6r1ya15u3"]
+
+[ext_resource type="Script" path="res://scenes/ui.gd" id="1_8a6hi"]
+[ext_resource type="FontFile" uid="uid://2hq75lgcdam8" path="res://fonts/joystix monospace.otf" id="1_iw0p0"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_8a6hi")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="GameOverLabel" type="Label" parent="MarginContainer/CenterContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.529412, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_iw0p0")
+theme_override_font_sizes/font_size = 120
+text = "Game Over"
+
+[node name="PointsContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="PointsLabel" type="Label" parent="MarginContainer/PointsContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_iw0p0")
+theme_override_font_sizes/font_size = 28
+text = "6000"
+
+[node name="LivesContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+alignment = 2

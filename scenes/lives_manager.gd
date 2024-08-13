@@ -7,7 +7,7 @@ signal on_game_over()
 
 @export var player_scene: PackedScene
 
-@onready var player: Player = $"../Player"
+@onready var player: Player = $"../../Player"
 @export var lives: int = 3
 
 var player_start_position = Vector2(0, 0)
