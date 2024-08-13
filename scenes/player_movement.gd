@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name Player
 
+signal on_died()
+
 @export var linear_acceleration: float = 300
 @export var max_velocity: float = 700
 @export var velocity_damping_factor: float = 0.5
@@ -43,3 +45,7 @@ func slow_down_and_stop(delta: float):
 	velocity = lerp(velocity, Vector2.ZERO, velocity_damping_factor * delta)
 	if velocity.y > -0.1 && velocity.y < 0.1:
 		velocity = Vector2.ZERO
+
+func destroy():
+	on_died.emit()
+	queue_free()

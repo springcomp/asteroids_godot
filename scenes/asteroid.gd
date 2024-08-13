@@ -52,7 +52,7 @@ func _on_area_entered(area: Area2D):
 
 func _on_body_entered(body: CharacterBody2D):
 	if body is Player:
-		body.queue_free()
+		body.destroy()
 		on_destroy()
 
 func on_destroy():
