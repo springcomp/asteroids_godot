@@ -27,3 +27,13 @@ bullet_scene = ExtResource("4_6arhu")
 
 [node name="ScreenBoundsMovements" parent="." node_paths=PackedStringArray("node") instance=ExtResource("3_7sa2m")]
 node = NodePath("..")
+
+[node name="InvincibleTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="BlinkingTimer" type="Timer" parent="InvincibleTimer"]
+wait_time = 0.3
+
+[connection signal="timeout" from="InvincibleTimer" to="." method="_on_invicible_timer_timeout"]
+[connection signal="timeout" from="InvincibleTimer/BlinkingTimer" to="." method="_on_blinking_timer_timeout"]

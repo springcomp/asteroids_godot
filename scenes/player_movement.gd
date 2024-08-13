@@ -8,6 +8,9 @@ signal on_died()
 @export var max_velocity: float = 700
 @export var velocity_damping_factor: float = 0.5
 
+@onready var invincible_timer: Timer = $InvincibleTimer
+@onready var blinking_timer: Timer = $InvincibleTimer/BlinkingTimer
+
 ## -1: rotates right
 ##  0: does not rotate
 ## +1: rotates left
@@ -15,6 +18,10 @@ var rotation_direction: int = 0
 var rotation_speed: float = PI
 
 var input_vector: Vector2
+var invincible: bool = false
+
+func _ready():
+	make_invicible()
 
 func _process(_delta: float):
 	input_vector.x = Input.get_action_strength("rotate_left") - Input.get_action_strength("rotate_right");
@@ -49,3 +56,16 @@ func slow_down_and_stop(delta: float):
 func destroy():
 	on_died.emit()
 	queue_free()
+
+func make_invicible():
+	invincible = true
+	invincible_timer.start()
+	blinking_timer.start()
+
+func _on_invicible_timer_timeout():
+	blinking_timer.stop()
+	invincible = false
+	visible = true
+
+func _on_blinking_timer_timeout():
+	visible = !visible

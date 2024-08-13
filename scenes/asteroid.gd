@@ -51,7 +51,7 @@ func _on_area_entered(area: Area2D):
 		on_destroy()
 
 func _on_body_entered(body: CharacterBody2D):
-	if body is Player:
+	if body is Player && !(body as Player).invincible:
 		body.destroy()
 		on_destroy()
 
