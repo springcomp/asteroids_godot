@@ -28,3 +28,8 @@ func _on_lives_manager_on_game_over():
 
 func _on_points_manager_on_points_updated(points: int):
 	points_label.text = "%s" % [ points ]
+
+func _on_asteroid_spawner_on_game_won():
+	game_over_label.text = "You won!"
+	game_over_label.add_theme_color_override("font_color", Color.CHARTREUSE)
+	game_over_label.visible = true

@@ -3,6 +3,7 @@ extends Node
 const Utils = preload("res://scenes/utils/asteroid_size.gd")
 
 signal on_asteroid_destroyed(size: Utils.AsteroidSize)
+signal on_game_won()
 
 @export var asteroid_scene: PackedScene
 @export var count: int = 6
@@ -11,11 +12,16 @@ signal on_asteroid_destroyed(size: Utils.AsteroidSize)
 
 var screen_size: Vector2 
 
+var total_asteroid_count: int
+var destroyed_asteroid_count: int = 0
+
 func _ready():
 	var rect = get_viewport().get_visible_rect()
 	var camera = get_viewport().get_camera_2d()
 	var zoom = camera.zoom
 	screen_size = rect.size / zoom
+
+	total_asteroid_count = count * 7
 
 	for i in range(count):
 		spawn_location.progress_ratio = randf()
@@ -34,8 +40,13 @@ func spawn_asteroid(position: Vector2, direction: float, size: Utils.AsteroidSiz
 
 func _on_asteroid_destroyed(position: Vector2, size: Utils.AsteroidSize):
 	on_asteroid_destroyed.emit(size)
+	destroyed_asteroid_count += 1
+
 	if size != Utils.AsteroidSize.SMALL:
 		var nextSize = size + 1
 		for i in range(2):
 			var direction = randf_range(-PI, PI)
 			spawn_asteroid(position, direction, nextSize)
+
+	if destroyed_asteroid_count == total_asteroid_count:
+		on_game_won.emit()
