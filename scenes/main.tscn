@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://c53poqrkhqdlc"]
+[gd_scene load_steps=5 format=3 uid="uid://c53poqrkhqdlc"]
 
-[ext_resource type="PackedScene" uid="uid://gitx336ead6x" path="res://scenes/player.tscn" id="1_cwjfw"]
 [ext_resource type="PackedScene" uid="uid://bej0mcvn8t85q" path="res://scenes/asteroid_spawner.tscn" id="2_nyc5g"]
 [ext_resource type="PackedScene" uid="uid://kpgy14hedcck" path="res://scenes/lives_manager.tscn" id="3_mdis0"]
 [ext_resource type="PackedScene" uid="uid://w7g6r1ya15u3" path="res://scenes/ui.tscn" id="4_v0h42"]
@@ -10,8 +9,6 @@
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
-
-[node name="Player" parent="." instance=ExtResource("1_cwjfw")]
 
 [node name="AsteroidSpawner" parent="." instance=ExtResource("2_nyc5g")]
 

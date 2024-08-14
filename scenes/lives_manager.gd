@@ -7,13 +7,12 @@ signal on_game_over()
 
 @export var player_scene: PackedScene
 
-@onready var player: Player = $"../../Player"
 @export var lives: int = 3
 
 var player_start_position = Vector2(0, 0)
 
 func _ready():
-	player.on_died.connect(on_player_died)
+	spawn_new_player()
 
 func on_player_died():
 	lives -= 1
