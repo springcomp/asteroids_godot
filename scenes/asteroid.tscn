@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://mnipidhsixy8"]
+[gd_scene load_steps=5 format=3 uid="uid://mnipidhsixy8"]
 
 [ext_resource type="Texture2D" uid="uid://7korjy0xrwe1" path="res://arts/Asteroid_01.png" id="1_mtbs2"]
 [ext_resource type="Script" path="res://scenes/asteroid.gd" id="1_xwpk5"]
-[ext_resource type="PackedScene" uid="uid://p8rfmrdn0nrd" path="res://scenes/screen_bounds_movements.tscn" id="2_aw7cb"]
+[ext_resource type="Script" path="res://scenes/utils/screen_bounds_movement.gd" id="3_vfpdm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rg1f4"]
 radius = 64.0
@@ -18,7 +18,8 @@ texture = ExtResource("1_mtbs2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_rg1f4")
 
-[node name="ScreenBoundsMovements" parent="." node_paths=PackedStringArray("node") instance=ExtResource("2_aw7cb")]
+[node name="ScreenBoundsMovement2D" type="Node" parent="." node_paths=PackedStringArray("node")]
+script = ExtResource("3_vfpdm")
 node = NodePath("..")
 
 [node name="ExplosionParticles" type="CPUParticles2D" parent="."]

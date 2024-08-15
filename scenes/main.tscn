@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c53poqrkhqdlc"]
+[gd_scene load_steps=6 format=3 uid="uid://c53poqrkhqdlc"]
 
 [ext_resource type="PackedScene" uid="uid://bej0mcvn8t85q" path="res://scenes/asteroid_spawner.tscn" id="2_nyc5g"]
-[ext_resource type="PackedScene" uid="uid://kpgy14hedcck" path="res://scenes/lives_manager.tscn" id="3_mdis0"]
+[ext_resource type="Script" path="res://scenes/lives_manager.gd" id="3_ri5ld"]
+[ext_resource type="PackedScene" uid="uid://gitx336ead6x" path="res://scenes/player.tscn" id="4_pqtu4"]
 [ext_resource type="PackedScene" uid="uid://w7g6r1ya15u3" path="res://scenes/ui.tscn" id="4_v0h42"]
 [ext_resource type="Script" path="res://scenes/points_manager.gd" id="5_foeb0"]
 
@@ -14,7 +15,9 @@ zoom = Vector2(0.5, 0.5)
 
 [node name="UI" parent="." instance=ExtResource("4_v0h42")]
 
-[node name="LivesManager" parent="UI" instance=ExtResource("3_mdis0")]
+[node name="LivesManager" type="Node" parent="UI"]
+script = ExtResource("3_ri5ld")
+player_scene = ExtResource("4_pqtu4")
 
 [node name="PointsManager" type="Node" parent="UI"]
 script = ExtResource("5_foeb0")
@@ -23,5 +26,4 @@ script = ExtResource("5_foeb0")
 [connection signal="on_game_won" from="AsteroidSpawner" to="UI" method="_on_asteroid_spawner_on_game_won"]
 [connection signal="on_game_over" from="UI/LivesManager" to="UI" method="_on_lives_manager_on_game_over"]
 [connection signal="on_player_life_lost" from="UI/LivesManager" to="UI" method="_on_lives_manager_on_player_life_lost"]
-[connection signal="on_player_life_lost" from="UI/LivesManager" to="UI/PointsManager" method="_on_lives_manager_on_player_life_lost"]
 [connection signal="on_points_updated" from="UI/PointsManager" to="UI" method="_on_points_manager_on_points_updated"]
