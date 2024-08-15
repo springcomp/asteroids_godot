@@ -6,7 +6,6 @@ const Utils = preload("res://scenes/utils/asteroid_size.gd")
 
 signal on_destroyed(position: Vector2, size: Utils.AsteroidSize)
 
-@export var asteroid_scene: PackedScene
 @export var speed: float = 100
 
 @onready var sprite = $Sprite2D
