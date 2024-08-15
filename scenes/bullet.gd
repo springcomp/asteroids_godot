@@ -9,5 +9,5 @@ class_name Bullet
 func _process(delta):
 	position += direction * speed * delta
 
-func _on_visible_on_screen_notifier_2d_screen_exited():
+func _on_decay_timer_timeout():
 	queue_free()

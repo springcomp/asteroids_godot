@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct0r5bto3oyo2"]
+[gd_scene load_steps=5 format=3 uid="uid://ct0r5bto3oyo2"]
 
 [ext_resource type="Script" path="res://scenes/bullet.gd" id="1_yamtn"]
 [ext_resource type="Texture2D" uid="uid://4yorcumyk7lw" path="res://arts/bullet.png" id="2_62o1i"]
+[ext_resource type="Script" path="res://scenes/utils/screen_bounds_movement.gd" id="3_yk5ab"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_be44b"]
 size = Vector2(8, 8)
@@ -17,8 +18,13 @@ texture = ExtResource("2_62o1i")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_be44b")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(2.38419e-07, 2.38419e-07)
-scale = Vector2(0.4, 0.4)
+[node name="ScreenBoundsMovement2D" type="Node" parent="." node_paths=PackedStringArray("node")]
+script = ExtResource("3_yk5ab")
+node = NodePath("..")
 
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[node name="DecayTimer" type="Timer" parent="."]
+wait_time = 1.8
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="DecayTimer" to="." method="_on_decay_timer_timeout"]
